@@ -606,7 +606,7 @@ func (hood *Hood) Where(a Path, op string, b interface{}) *Hood {
 	return hood
 }
 
-// Where adds a AND clause to the WHERE query. You can concatenate using the
+// And: Where adds a AND clause to the WHERE query. You can concatenate using the
 // And and Or methods.
 func (hood *Hood) And(a Path, op string, b interface{}) *Hood {
 	hood.where = append(hood.where, &andClause{
@@ -617,7 +617,7 @@ func (hood *Hood) And(a Path, op string, b interface{}) *Hood {
 	return hood
 }
 
-// Where adds a OR clause to the WHERE query. You can concatenate using the
+// Or: Where adds a OR clause to the WHERE query. You can concatenate using the
 // And and Or methods.
 func (hood *Hood) Or(a Path, op string, b interface{}) *Hood {
 	hood.where = append(hood.where, &orClause{
@@ -1127,7 +1127,7 @@ func (hood *Hood) RenameColumn(table interface{}, from, to string) error {
 	return hood.Dialect.RenameColumn(hood, tableName(table), from, to)
 }
 
-// ChangeColumn changes the data type of the specified column.
+// ChangeColumns: changes the data type of the specified column.
 func (hood *Hood) ChangeColumns(table, column interface{}) error {
 	if !hood.dryRun && !hood.IsTransaction() {
 		panic("ChangeColumns can only be invoked inside a transaction")
